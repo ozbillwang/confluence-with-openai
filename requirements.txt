@@ -6,5 +6,4 @@ transformers
 numpy
 flask
 pandas
-pandas
 datetime

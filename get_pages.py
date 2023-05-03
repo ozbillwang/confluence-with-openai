@@ -2,13 +2,13 @@
 
 import os
 import json
-from confluencepages import connect_to_Confluence, get_all_pages
+from app import connect_to_Confluence, get_all_pages
 from dotenv import load_dotenv
 
 load_dotenv()
 
 confluence=connect_to_Confluence()
-pages=get_all_pages(confluence, space='CCOE')
+pages=get_all_pages(confluence, space=os.environ["atlassian-space"])
 
 # Get all datas
 json_string = json.dumps(pages)
