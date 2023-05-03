@@ -1,0 +1,10 @@
+atlassian-python-api
+openai
+python-dotenv
+nltk
+transformers
+numpy
+flask
+pandas
+pandas
+datetime
