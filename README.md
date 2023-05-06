@@ -49,6 +49,8 @@ $ flask run
 Press CTRL+C to quit
 ```
 
+Wait for a while (60+ seconds), you can access the website locally
+
 Access the application via http://127.0.0.1:5000
 
 ![index](images/index.png)
