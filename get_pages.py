@@ -2,7 +2,7 @@
 
 import os
 import json
-from app import connect_to_Confluence, get_all_pages
+from app import connect_to_Confluence,get_all_pages,collect_title_body_embeddings
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -21,3 +21,7 @@ json_string = json.dumps(pages[:100])
 with open("output_100.json", "w") as file:
     # Convert the list to a string using the join() method
     file.write(json_string)
+
+# Extract title, body and number of tokens
+# If successful, file named "DOC_title_content_embeddings.csv" will be created locally
+collect_title_body_embeddings(pages, save_csv=True)

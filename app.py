@@ -75,6 +75,7 @@ tokenizer = GPT2TokenizerFast.from_pretrained("gpt2")
 import openai
 import numpy as np
 import pandas as pd
+from bs4 import BeautifulSoup
 
 # Set the API key
 openai.api_key = os.environ["openai-api-key"]
@@ -84,6 +85,13 @@ def get_doc_model():
     Model string to calculate the embeddings.
     '''
     return 'text-search-curie-doc-001'
+
+def get_query_model():
+    '''
+    Model string to calculate the embeddings.
+    '''
+    #return 'gpt-3.5-turbo'
+    return 'text-embedding-ada-002'
 
 def get_embeddings(text: str, model: str) -> list[float]:
     '''
