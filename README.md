@@ -1,8 +1,8 @@
-# Run chagGPT with internal confluence pages.
+# Run chatGPT with internal confluence pages.
+
+NOTES: Not fully functional
 
 Ref: https://medium.com/@francois.ascani/running-chatgpt-on-your-internal-confluence-documentation-d7761aa8fc68 
-
-Notes: only make the step 1 and 2 work
 
 ### Usages
 
