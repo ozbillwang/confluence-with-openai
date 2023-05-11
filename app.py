@@ -60,7 +60,7 @@ def get_all_pages(confluence, space=os.environ["atlassian-space"]):
     limit = 100
     pages = []
     while keep_going:
-        results = confluence.get_all_pages_from_space(space, start=start, limit=100, status=None, expand='body.storage', content_type='page')
+        results = confluence.get_all_pages_from_space(space, start=start, limit=limit, status=None, expand='body.storage', content_type='page')
         pages.extend(results)
         if len(results) < limit:
             keep_going = False
@@ -90,8 +90,7 @@ def get_query_model():
     '''
     Model string to calculate the embeddings.
     '''
-    #return 'gpt-3.5-turbo'
-    return 'text-embedding-ada-002'
+    return 'text-search-curie-doc-001'
 
 def get_embeddings(text: str, model: str) -> list[float]:
     '''
@@ -137,7 +136,7 @@ def collect_title_body_embeddings(pages, save_csv=True):
     collect = []
     for page in pages:
         title = page['title']
-        link = get_url() + '/wiki/spaces/MY-SPACE/pages/' + page['id']
+        link = get_url() + '/wiki/spaces/' + os.environ["atlassian-space"] + '/pages/' + page['id']
         htmlbody = page['body']['storage']['value']
         htmlParse = BeautifulSoup(htmlbody, 'html.parser')
         body = []
@@ -173,7 +172,7 @@ def update_internal_doc_embeddings():
     # Connect to Confluence
     confluence = connect_to_Confluence()
     # Get page contents
-    pages = get_all_pages(confluence, space='MY-SPACE')
+    pages = get_all_pages(confluence, space=os.environ["atlassian-space"])
     # Extract title, body and number of tokens
     DOC_title_content_embeddings= collect_title_body_embeddings(pages, save_csv=True)
     return DOC_title_content_embeddings
@@ -218,8 +217,8 @@ def construct_prompt(query, doc_embeddings):
         chosen_sections_len += document_section.num_tokens + separator_len
         if chosen_sections_len > MAX_SECTION_LEN:
             break
-
-        chosen_sections.append(SEPARATOR + document_section.body.replace("\n", " "))
+        # chosen_sections.append(SEPARATOR + document_section.body.replace("\n", " "))
+        chosen_sections.append(SEPARATOR + str(document_section.body))
         chosen_sections_links.append(document_section.link)
 
     header = """Answer the question as truthfully as possible using the provided context, and if the answer is not contained within the text below, say "I don't know."\n\nContext:\n"""

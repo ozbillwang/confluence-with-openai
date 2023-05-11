@@ -32,11 +32,12 @@ $ source env/bin/activate
 $ pip install -r requirements.txt
 python ./get_pages.py
 ```
-If successful, you will see two files
+If successful, you will see several new files are generated
 
 ```
-$ ls output_*
-output_100.json  output_all.json
+output_100.json
+output_all.json
+DOC_title_content_embeddings.csv
 ```
 
 Run the application
