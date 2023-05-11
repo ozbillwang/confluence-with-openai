@@ -1,8 +1,8 @@
 # Run chatGPT with internal confluence pages.
 
-NOTES: Not fully functional
-
 Ref: https://medium.com/@francois.ascani/running-chatgpt-on-your-internal-confluence-documentation-d7761aa8fc68 
+
+**NOTES: Not fully functional. I can get some questions answered, but for most questions, the bot answers "I don't know"**
 
 ### Usages
 
